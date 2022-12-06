@@ -1,5 +1,5 @@
 ﻿//Discord bot with connection to Notion DB
-//Scans for lectures for our class and sends message at 08:00
+//Scans for lectures for our class and sends message at 08:00 in Discord
 //Martin Qvarnström SUT22, Campus Varberg
 
 //Program.cs class with Main method to handle runtime
@@ -18,7 +18,7 @@ namespace NotBot
         string returnMessage = "";
 
         public ulong discordServer; //Assign with server id
-        public ulong discordChannel; //Assign in with channel id
+        public ulong discordChannel; //Assign with with channel id
 
         //Main method to run client
         static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
@@ -69,7 +69,7 @@ namespace NotBot
             //Bot is online
         }
 
-        //Timer to check if it is time to scan html in string fullUrl
+        //Timer to check if it is time to check Notion DB for lecture
         private async Task TimerInterval()
         {
             //Set timespan to 10 minutes and create timer object w. param of timespan

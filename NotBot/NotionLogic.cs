@@ -1,5 +1,5 @@
 ﻿//Discord bot with connection to Notion DB
-//Scans for lectures for our class and sends message at 08:00
+//Scans for lectures for our class and sends message at 08:00 in Discord
 //Martin Qvarnström SUT22, Campus Varberg
 
 //NotionLogic.cs to handle connection and retrival of data from Notion DB
