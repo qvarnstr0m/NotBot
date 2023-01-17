@@ -11,7 +11,7 @@ Screenshot:
 ### Why    
 The main feature for this bot is the connection to Notion. Most of our(SUT22, Campus Varberg) course is handled through Notion, including information on lessons. Our internal communication is mostly on our Discord server, so I connected the two with this bot. It scans the Notion classes DB for events once a day and sends a message with the relevant parsed data.  
   
-The bot also has some easter egg type functions in that it responds to certain words and phrases. More features may be added in the future, feel free to contribute!
+The bot also has some easter egg type functions in that it responds to certain words and phrases. More features may be added in the future, feel free to <a href ="#contribute">contribute</a>!
 
 ### How  
 #### Program.cs  
