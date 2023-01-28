@@ -29,9 +29,6 @@ namespace NotBot
         private IServiceProvider _services;
         private SocketGuild guild;
 
-        //Get token through .txt file and StreamReader
-        StreamReader readToken = new StreamReader("");
-
         //Log channel info
         private ulong LogChannelID;
         private SocketTextChannel LogChannel;
@@ -39,6 +36,17 @@ namespace NotBot
         //Connect bot
         public async Task RunBotAsync()
         {
+            StreamReader readToken = null;
+            try
+            {
+                //Get token through .txt file and StreamReader
+                readToken = new StreamReader("");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Environment.Exit(0);
+            }
             var config = new DiscordSocketConfig()
             {
                 GatewayIntents = GatewayIntents.All
@@ -57,6 +65,8 @@ namespace NotBot
             _client.Log += _client_Log;
 
             await RegisterCommandsAsync();
+
+            await AlertOnVoiceJoinAsync();
 
             await _client.LoginAsync(TokenType.Bot, token);
 
@@ -136,6 +146,20 @@ namespace NotBot
         {
             _client.MessageReceived += HandleCommandAsync;
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+        }
+
+        //Alert when a user joins the lounge voice channel
+        private async Task AlertOnVoiceJoinAsync()
+        {
+            _client.UserVoiceStateUpdated += (user, from, to) =>
+            {
+                if (from.VoiceChannel == null && to.VoiceChannel?.Name == "Lounge")
+                {
+                    _client.GetGuild(discordServer).GetTextChannel(discordChannel).
+                        SendMessageAsync($"{user.Username} har smygit in i loungen, in och tjöta 📣📣📣");
+                }
+                return Task.CompletedTask;
+            };
         }
 
         //Input and output logic
