@@ -2,20 +2,21 @@
 //Scans for lectures for our class and sends message at 08:00 in Discord
 //Martin Qvarnström SUT22, Campus Varberg
 
-//NotionLogic.cs to handle connection and retrival of data from Notion DB
+//Notion.cs, handles the read, parsing and output from the Notion DB
 
+using NotBot.Service;
 using Notion.Client;
 using System.Text;
 
-namespace NotBot
+namespace NotBot.Modules
 {
-    internal static class NotionLogic
+    internal class Notion
     {
         internal static async Task<string> ScanNotionDB()
         {
-            //Get token and DB through .txt files and StreamReader
-            StreamReader readToken = new StreamReader("");
-            StreamReader readDB = new StreamReader("");
+            //Get token and DB
+            string notionToken = ConfigSingleton.Instance.GetSection("Secrets")["NotionDBToken"];
+            string notionDB = ConfigSingleton.Instance.GetSection("Secrets")["NotionDB"];
 
             //String to hold return message
             string returnMessage = "";
@@ -23,13 +24,13 @@ namespace NotBot
             //Set up client with token reference to a Notion DB
             var client = NotionClientFactory.Create(new ClientOptions
             {
-                AuthToken = readToken.ReadToEnd()
+                AuthToken = notionToken
             });
 
             //Set up filter and to query to DB with client to get return of pages
             var dateFilter = new DateFilter("Datum", onOrAfter: DateTime.Today);
             var queryParams = new DatabasesQueryParameters { Filter = dateFilter };
-            var pages = await client.Databases.QueryAsync(readDB.ReadToEnd(), queryParams);
+            var pages = await client.Databases.QueryAsync(notionDB, queryParams);
 
             //Loop through all pages
             foreach (var result in pages.Results)
