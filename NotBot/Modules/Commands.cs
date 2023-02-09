@@ -8,12 +8,13 @@ using Discord.Commands;
 
 namespace NotBot.Modules
 {
-    public class Commands : ModuleBase<SocketCommandContext>
+    public class Commands
     {
-        [Command("testcommand")]
-        public async Task Comandi()
+        public static async Task ExecuteCommands(string command)
         {
-            await ReplyAsync("This a /testcommand");
+            //Not yet implemented
+            Console.WriteLine($"the command: {command}");
+            await Task.CompletedTask;
         }
     }
 }
