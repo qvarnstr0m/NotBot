@@ -27,9 +27,16 @@
   + Microsoft.Extensions.DependencyInjection
   + Notion.NET
 
-### Contribute  
+### Contribute   
   
-### Run locally  
+  Contributions of any kind are welcome!   
+    
+  Make sure you have [dotnet installed](https://dotnet.microsoft.com/en-us/download).  
+    
+Clone the project on a CLI  
+```git clone https://github.com/qvarnstr0m/NotBot/```  
+
+  Install all the Nuget packages listed in the Tech Stack  
   
 ### Run on a server  
-  
+This bot needs to run in an enviroment that can handle .NET 6.0 apps, I have yet to find a good free one and this one runs on [serverstarter.host](https://serverstarter.host/) for a couple of $ a month. Feel free to contribute and add a list of decent bot hosting servers, free or not.
