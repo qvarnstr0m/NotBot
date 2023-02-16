@@ -20,7 +20,7 @@ namespace NotBot.Modules
             //Check if message is command
             if (fullMessage.ToString()[0] == '!')
             {
-                await Commands.ExecuteCommands(fullMessage.ToString().Substring(1));
+                await Commands.ExecuteCommands(fullMessage);
                 return;
             }
 
